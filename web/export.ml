@@ -3,7 +3,7 @@ open Slang
 
 let wrap interp str =
   try interp str
-  with 
+  with
     | Errors.Error s -> s
 
 let frontend str = Front_end.front_end_from_string (Js.to_string str)
