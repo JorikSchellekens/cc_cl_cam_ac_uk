@@ -1,4 +1,4 @@
-export default {
+const languageDef = {
   keywords: [
     "true", "false", "ref", "inl", "inr",
     "fst", "snd", "case", "of", "if", "then",
@@ -19,7 +19,7 @@ export default {
   ],
 
   // we include these common regular expressions
-  symbols:  /[=><!~?:&|+\-*\/\^%]+/,
+  symbols:  /[=><!~?:&|+\-*/^%]+/,
 
   // C# style strings
   escapes: /\\/,
@@ -31,19 +31,19 @@ export default {
       [/[a-z_$][\w$]*/, { cases: { '@typeKeywords': 'keyword',
                                    '@keywords': 'keyword',
                                    '@default': 'identifier' } }],
-      [/[A-Z][\w\$]*/, 'type.identifier' ],  // to show class names nicely
+      [/[A-Z][\w$]*/, 'type.identifier' ],  // to show class names nicely
 
       // whitespace
       { include: '@whitespace' },
 
       // delimiters and operators
-      [/[{}()\[\]]/, '@brackets'],
+      [/[{}()[\]]/, '@brackets'],
       [/[<>](?!@symbols)/, '@brackets'],
       [/@symbols/, { cases: { '@operators': 'operator',
                               '@default'  : '' } } ],
 
       // numbers
-      [/\d*\.\d+([eE][\-+]?\d+)?/, 'number.float'],
+      [/\d*\.\d+([eE][-+]?\d+)?/, 'number.float'],
       [/0[xX][0-9a-fA-F]+/, 'number.hex'],
       [/\d+/, 'number'],
 
@@ -58,10 +58,10 @@ export default {
     ],
 
     comment: [
-      [/[^\(*]+/, 'comment' ],
+      [/[^(*]+/, 'comment' ],
       [/\(\*/,    'comment', '@push' ],    // nested comment
       ["\\*\\)",    'comment', '@pop'  ],
-      [/[\(*]/,   'comment' ]
+      [/[(*]/,   'comment' ]
     ],
 
     string: [
@@ -76,5 +76,6 @@ export default {
       [/\(\*/,       'comment', '@comment' ],
     ],
   },
-}
+};
 
+export default languageDef;

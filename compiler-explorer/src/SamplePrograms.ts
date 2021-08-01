@@ -1,4 +1,4 @@
-export default {
+const samplePrograms = {
   fib: `let fib( m : int) : int =
     if m = 0
     then 1
@@ -40,5 +40,6 @@ in
       let  y : int = 2 in gcd(x, y) end
     end
 end`
-}
+};
 
+export default samplePrograms;
