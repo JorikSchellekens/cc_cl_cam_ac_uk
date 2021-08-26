@@ -431,5 +431,5 @@ let interpret e =
     (* set the code pointer to 0 *) 
     in driver 1 (0 , [])
 
-let reset = fun _ -> next_address := 0; label_ref := 0
+let reset = fun _ -> next_address := 0; label_ref := 0; Array.fill heap 0 (Array.length heap) (INT 0)
 
