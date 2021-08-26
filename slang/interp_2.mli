@@ -1,7 +1,7 @@
 
 type address = int 
 
-type var = string 
+type var = string [@@deriving yojson]
 
 type value = 
      | REF of address 
@@ -12,7 +12,7 @@ type value =
      | INL of value 
      | INR of value 
      | CLOSURE of closure    
-     | REC_CLOSURE of code
+     | REC_CLOSURE of code [@@deriving yojson]
 
 and closure = code * env 
 
@@ -48,7 +48,7 @@ and env = binding list
 
 type env_or_value = EV of env | V of value 
 
-type env_value_stack = env_or_value list
+type env_value_stack = env_or_value list [@@deriving yojson]
 
 (* array of referenced values together with next unallocated address *) 
 type state = (value array) * int 
