@@ -53,7 +53,11 @@ type env_value_stack = env_or_value list
 (* array of referenced values together with next unallocated address *) 
 type state = (value array) * int 
 
-type interp_state = code * env_value_stack * state 
+type interp_state = code * env_value_stack * state [@@deriving yojson]
+
+val initial_state : state
+
+val initial_env : env_value_stack
 
 val step : interp_state -> interp_state 
 
@@ -63,7 +67,11 @@ val driver : int -> interp_state -> value * state
 
 val interpret : Ast.expr -> value * state 
 
+val string_of_instruction : instruction -> string
+
 val string_of_value : value -> string 
+
+val string_of_env_or_value : env_or_value -> string
 
 val string_of_code : code -> string 
 
