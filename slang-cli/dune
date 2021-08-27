@@ -1,0 +1,4 @@
+(executable
+  (name slang-cli)
+  (libraries slang)
+)

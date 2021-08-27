@@ -11,25 +11,14 @@ language L3 from 1B Semantics.
 ===============================================
 Building 
 ===============================================
-Install ocamlbuild.  Then do either 
+Install dune.  Then run the following instruction
+from the top directory of the project.
 
-  ocamlbuild slang.byte
+  dune build slang-cli
 
-or
+To clean the project
 
-  ocamlbuild slang.native  
-
-This will build the executable slang.byte (or 
-slang.native) as well as a directory _build 
-of compiled code. 
-
-To clean up, just do 
-
-  ocamlbuild -clean 
-
-Building slang.byte is quicker, but the runtime of 
-slang.native is faster.  However, you probably will 
-not notice the difference on this project. 
+  dune clean
 
 ===============================================
 Usage 
@@ -59,17 +48,17 @@ Files
 
 Every .ml file has an associated .mli file describing its interface. 
 
-errors.ml      : Error exception 
-past.ml        : the Parsed AST, with pretty printing 
-lexer.mll      : specification for ocamllex 
-parser.mly     : specification for ocamlyacc 
-ast.ml         : "internal" AST, with pretty printing  
-past_to_ast.ml : translated from parsed to internal AST 
-static.ml      : static analysis (check types and other rules) 
-front_end.ml   : the front end : parse, static check, translate. 
-free_vars.ml   : free variable calculation 
-tests.ml       : code for parsing tests/manifest.txt and setting up testing. 
-slang.ml       : main file, implementing the command-line for the interpreter and compiler 
+errors.ml              : Error exception 
+past.ml                : the Parsed AST, with pretty printing 
+lexer.mll              : specification for ocamllex 
+parser.mly             : specification for ocamlyacc 
+ast.ml                 : "internal" AST, with pretty printing  
+past_to_ast.ml         : translated from parsed to internal AST 
+static.ml              : static analysis (check types and other rules) 
+front_end.ml           : the front end : parse, static check, translate. 
+free_vars.ml           : free variable calculation 
+tests.ml               : code for parsing tests/manifest.txt and setting up testing. 
+../slang-cli/slang.ml  : main file, implementing the command-line for the interpreter and compiler 
 
 Interpreters (In order of presentation in lectures)
 interp_0.ml    : The "definitional" interpreter. 
